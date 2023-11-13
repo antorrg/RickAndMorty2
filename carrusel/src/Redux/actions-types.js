@@ -1,0 +1,4 @@
+export const GET_CHARACTERS='GET_CHARACTERS';
+export const SET_CURRENT_PAGE='SET_CURRENT_PAGE';
+export const SET_BY_ID= 'SET_BY_ID';
+export const CLEAN_STATE='CLEAN_STATE'
