@@ -19,4 +19,5 @@ const getUsers = async(req,res)=>{
     }
 }
 
+
 module.exports = {usersHandler, getUsers};

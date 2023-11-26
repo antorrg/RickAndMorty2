@@ -9,7 +9,7 @@ const ensureAuthenticated = (req, res, next) => {
 
 module.exports = { ensureAuthenticated };
 
-//const crypto = require('crypto');
+// const crypto = require('crypto');
 
 // const generateSecret = () => {
 //   return crypto.randomBytes(32).toString('hex');
