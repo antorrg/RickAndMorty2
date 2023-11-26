@@ -9,13 +9,13 @@ const Carousel = ( {character}) => {
   console.log(character)
   // Configuración del carrusel
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4, // Ajusta según tus necesidades
     slidesToScroll: 1,
     autoplay: true, // Habilita el autoplay
-    autoplaySpeed: 3000, // Establece el tiempo de espera entre diapositivas en milisegundos (en este caso, 3 segundos)
+    autoplaySpeed: 1500, // Establece el tiempo de espera entre diapositivas en milisegundos (en este caso, 3 segundos)
   };
 
   return (

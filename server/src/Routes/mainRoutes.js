@@ -1,13 +1,13 @@
 const {Router}=require('express');
-const userRouter=require('./getRoutes');
-//const postUser=require('./postRoutes')
+const charRouter=require('./getRoutes');
+const usersRouter=require('./usersRouter');
+
 
 const mainRouter = Router();
+const logRouter = Router();
 
-mainRouter.use('/', userRouter);
+mainRouter.use('/api', charRouter);
 
-//mainRouter.use('/post', postUser);
+logRouter.use('/log', usersRouter);
 
-//mainRouter.use('/delete', deleteUser);
-
-module.exports= mainRouter;
+module.exports= {mainRouter, logRouter};

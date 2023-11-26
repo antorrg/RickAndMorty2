@@ -1,8 +1,8 @@
-const {getUsersApi, getUserId} = require('../controllers/userController')
+const {charUsersApi, charUserId} = require('../controllers/userController')
 
-const getUsers= async (req,res)=>{
+const charUsers= async (req,res)=>{
    try {
-       const response = await getUsersApi()
+       const response = await charUsersApi()
        res.status(200).json(response);
     
    } catch (error) {
@@ -11,10 +11,10 @@ const getUsers= async (req,res)=>{
    }
 };
 
-const getUserById = async(req, res)=>{
+const charUserById = async(req, res)=>{
     const {id} = req.params;
     try {
-        const response=await getUserId(id);
+        const response=await charUserId(id);
         res.status(200).json(response);
     } catch (error) {
         res.status(404).json({error:error.message});
@@ -22,6 +22,6 @@ const getUserById = async(req, res)=>{
 }
 
 module.exports= {
-    getUsers,
-    getUserById
+    charUsers,
+    charUserById
 };

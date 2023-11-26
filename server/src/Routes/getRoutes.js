@@ -1,11 +1,11 @@
 const {Router}=require('express');
-const {getUsers,getUserById}= require('../handlers/userHandler')
-const userRouter =Router();
+const {charUsers,charUserById}= require('../handlers/userHandler')
+const charRouter =Router();
 
 
 
-userRouter.get('/character',getUsers );
+charRouter.get('/character', charUsers );
 
-userRouter.get('/character/:id', getUserById);
+charRouter.get('/character/:id', charUserById);
 
-module.exports=userRouter;
+module.exports=charRouter;
