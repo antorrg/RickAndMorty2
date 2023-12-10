@@ -11,23 +11,19 @@ const signin = async (email, nickname, given_name, picture, sub, req, res) => {
     });
 
     if (existingUser) {
-      // El usuario ya existe, envía un mensaje indicando que está autenticado
+      try {
+        // El usuario ya existe, envía un mensaje indicando que está autenticado
       const result = { isCreate: false,  user: existingUser };
       console.log(result+' usuario viejo ya')
         // Genera el token
         const token = generateToken(existingUser);
-        console.log(token)
-
-        // Agrega el token al encabezado de la respuesta
-        if (res && res.header) {
-          res.headers('authorization', `Bearer ${token}`);
-          console.log('Encabezado Authorization establecido:', res.get('authorization'));
-        }
-        //res.headers('Authorization', `Bearer ${token}`);
-  
-        return result;
+        return {result, token};
+      } catch (error) {
+        throw new Error('Error al validar usuario')
+      }
     } else {
-      // El usuario no existe, créalo
+      try {
+        // El usuario no existe, créalo
       const [newUser, create] = await User.findOrCreate({
         where: {
           email: email,
@@ -47,16 +43,13 @@ const signin = async (email, nickname, given_name, picture, sub, req, res) => {
       const token = generateToken(newUser);
       console.log(token)
 
-      // Agrega el token al encabezado de la respuesta
-      if (res && res.header) {
-        res.header('authorization', `Bearer ${token}`);
+      return {result,token};
+      } catch (error) {
+        throw new Error ('Error al crear usuario')
       }
-     
-
-      return result;
+      
     }
   } catch (error) {
-    console.error("¡Algo malo pasó acá!", error);
     throw error;
   }
 };
@@ -67,7 +60,7 @@ const userUpd= async(id, role)=>{
     const user = await User.findByPk(id);
     console.log(user)
     if (!user) {
-      return { error: "Usuario no encontrado" };
+      throw new Error ("Usuario no encontrado" );
     }
 
     console.log("Nuevo rol (antes de la conversión):", rol);
@@ -76,13 +69,13 @@ const userUpd= async(id, role)=>{
     const parsedNewRol = parseFloat(role.role);
     console.log(parsedNewRol + " este es del controller");
     if (isNaN(parsedNewRol)) {
-      return { error: "El nuevo rol no es un número válido" };
+      throw new Error("El nuevo rol no es un número válido");
     }
     await user.update({ permissions: parsedNewRol });
     return user;
   } catch (error) {
     console.error("Error al actualizar el rol:", error);
-    return { error: "Error interno del servidor" };
+    throw error;
   }
 };
 

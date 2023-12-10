@@ -1,0 +1,23 @@
+.body {
+    background-image: url('../../assets/desktopGreyR&M.png');
+    display: flex; 
+   justify-content: center; 
+   align-items: center;
+   height: 100vh; 
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-attachment: responsive;
+
+ } 
+ .text {
+  background-color: none;
+  backdrop-filter: blur(5px);
+  color:black;
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: ubuntu;
+  /* text-transform: uppercase; */
+  position: relative;
+  user-select: none;
+ }

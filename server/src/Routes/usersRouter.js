@@ -2,7 +2,7 @@ const {Router}=require('express');
 const {favUsers, getUsers}= require('../handlers/protect/usersHandler')
 const {auth,updateUsersRol} =require('../handlers/protect/postHandler')
 const {charUsers}= require('../handlers/userHandler')
-const {verifyToken}=require('../helpers/verifyToken')
+const verifyToken=require('../helpers/verifyToken')
 
 const usersRouter =Router();
 

@@ -6,15 +6,17 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./Redux/store";
 import { Auth0Provider } from "@auth0/auth0-react";
-// import dotenv from 'dotenv'
-// dotenv.config();
-// const domain = process.env.REACT_APP_AUTH0_DOMAIN;
-// const clientid=process.env.REACT_APP_AUTH0_CLIENT_ID;
+import axios from 'axios';
+const domain = import.meta.env.VITE_AUTH0_DOMAIN;
+const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
+const url = import.meta.env.VITE_URL;
+
+axios.defaults.baseURL = url;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Auth0Provider  domain="dev-mg7v1nvcxu1guo4c.us.auth0.com"
-    clientId="wQuXnnBzksOOkDbSwb6pItsmmSOreCe1"
+    <Auth0Provider  domain={domain}
+    clientId={clientId}
     authorizationParams={{redirect_uri: window.location.origin
     }}>
       <Provider store={store}>

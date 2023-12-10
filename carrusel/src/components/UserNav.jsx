@@ -3,23 +3,19 @@ import LogoutButton from "./Auth0/LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Filter, Order } from "./Favorites/index";
 import { Search } from "./Index";
-//import { useDispatch } from "react-redux";
-//import { useEffect } from "react";
-//import {login}from '../Redux/actions';
-//import {enviarInfoAlServer} from '../utils/index';
+
 
 const UserNav = ({ setShowFavorites, showFavorites }) => {
-  //const data = useSelector((state) => state.login);
-  //const dispatch =useDispatch();
+ 
   const { user } = useAuth0();
   console.log(user);
   const handleToggleFavorites = () => {
     setShowFavorites(!showFavorites);
   };
-  // useEffect(() => {
-  //   enviarInfoAlServer();
-  // }, [isAuthenticated, user]);
-
+  const handleTogglePost = ()=>{
+    
+  }
+  
   return (
     <div className={style.nav}>
       <div className="">

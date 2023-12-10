@@ -7,25 +7,35 @@ const enviarInfoAlServer = async (userData) => {
     
     
         const email = userData.email;
-        const nickname = userData.nickname;
+        const password= userData.password ?? null;
+        const nickname = userData.nickname ?? null;
         const given_name = userData.given_name ?? null;
-        const picture = userData.picture;
-        const sub = userData.sub;
+        const picture = userData.picture ?? null;
+        const sub = userData.sub ?? null;
     
     
       try {
-        const response = await axios.post('http://localhost:3001/log/login',{
+        const response = await axios.post('/log/login',{
             email,
+            password,
             nickname,
             given_name,
             picture,
             sub,
           });
-        
-        if (response.data) {
-            console.log(response.data.user.permissions)
-            alert('Usuario autenticado/creado exitosamente');
-            return response.data.user;
+    
+          if (response.status === 201) {
+            const token = response.data.token;
+
+            console.log(token)
+            localStorage.setItem('authToken', token);
+
+            console.log('Token recibido y almacenado:', token);
+      
+            console.log('Token recibido:', token);
+           } if (response.data) {
+            console.log(response.data)
+            return response.data;
         
         } else {
            alert('Error al autenticar/crear usuario');
@@ -38,6 +48,8 @@ const enviarInfoAlServer = async (userData) => {
     
 }
 
+ 
+
 
 const accessInfo=(data)=>{
     if(data){
@@ -46,5 +58,6 @@ const accessInfo=(data)=>{
 }
 export {
     accessInfo,
-    enviarInfoAlServer
+    enviarInfoAlServer,
+   
 };

@@ -10,9 +10,10 @@ const Detail = () => {
   const detail = useSelector((state) => state.characterById);
 
   const { id } = useParams();
+  const token = localStorage.getItem('authToken');
 
   useEffect(() => {
-    dispatch(getById(id));
+    dispatch(getById(id, token));
   }, [dispatch, id]);
 
   const char = detail;

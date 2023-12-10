@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {setAuthHeader,  handleApiError} from '../utils/AxiosUtils'
 import {
     GET_CHARACTERS,
     SET_CURRENT_PAGE,
@@ -13,6 +14,8 @@ import {
     CLEAN_LOG
 } from './actions-types';
 
+
+
 export const getCharacters = () => async (dispatch)=>{
     try {
         const response = await axios('/api/character')
@@ -25,16 +28,17 @@ export const getCharacters = () => async (dispatch)=>{
         alert('Character not found')
     }
 }
-export const getById =(id)=>async(dispatch)=>{
+export const getById =(id, token)=>async(dispatch)=>{
     try {
-        const response = await axios(`/api/character/${id}`)
+        const response = await axios(`/api/character/${id}`,setAuthHeader(token))
         const data = response.data;
         return dispatch({
             type:SET_BY_ID,
             payload:data
         })
     } catch (error) {
-        alert("User's detail not found")
+        handleApiError(error);
+        throw error; 
     }
 }
 export const getByName=(name)=>async(dispatch)=>{

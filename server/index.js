@@ -27,7 +27,9 @@ server.listen(PORT, async()=>{
         console.log(`Server is listening in Port: ${PORT},✔️
     Everything is Good! 😉`)
     } catch (error) {
-     console.log(error);   
+     console.log(error); 
+
+
     }
     
 })
