@@ -3,22 +3,23 @@ import LogoutButton from "./Auth0/LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Filter, Order } from "./Favorites/index";
 import { Search } from "./Index";
+import { getFavorites } from "../Redux/actions";
 
 
 const UserNav = ({ setShowFavorites, showFavorites }) => {
- 
+
+ const token =localStorage.getItem('authToken')
   const { user } = useAuth0();
   console.log(user);
   const handleToggleFavorites = () => {
     setShowFavorites(!showFavorites);
+    dispatch(getFavorites(token))
   };
-  const handleTogglePost = ()=>{
-    
-  }
+  
   
   return (
     <div className={style.nav}>
-      <div className="">
+      <div>
         <LogoutButton />
       </div>
       <div className={style.userDetails}>
@@ -26,13 +27,13 @@ const UserNav = ({ setShowFavorites, showFavorites }) => {
         <img src={user.picture} alt="User Avatar" />
       </div>
       <div>
-        <Search />
+        <Search/>
       </div>
       {showFavorites && (
         <div className={style.favoritesSection}>
           <h3>Favoritos</h3>
           <div className={style.filterOrderButtons}>
-            <div>
+            <div >
               <Filter />
             </div>
             <div>
@@ -41,7 +42,7 @@ const UserNav = ({ setShowFavorites, showFavorites }) => {
           </div>
         </div>
       )}
-      <button onClick={handleToggleFavorites}>
+      <button onClick={handleToggleFavorites} className={style.pageNavbutton}>
         {showFavorites ? "Ir a Home" : "Ir a Favoritos"}
       </button>
       <div></div>

@@ -4,6 +4,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Card from './Card'; // Asegúrate de tener la ruta correcta al componente
+import { PrevArrow, NextArrow } from './Arrows';
+import styles from './styles/Arrows.module.css'
 
 const Carousel = ( {character}) => {
   console.log(character)
@@ -16,6 +18,8 @@ const Carousel = ( {character}) => {
     slidesToScroll: 1,
     autoplay: true, // Habilita el autoplay
     autoplaySpeed: 1500, // Establece el tiempo de espera entre diapositivas en milisegundos (en este caso, 3 segundos)
+    prevArrow: <PrevArrow />,
+    nextArrow: <NextArrow />,
   };
 
   return (

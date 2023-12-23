@@ -1,12 +1,17 @@
 import style from "./styles/NavBar.module.css";
 import LoginButton from "./Auth0/LoginButton";
 import { Search } from "./Index";
+
 export default function NavBar() {
+  
   return (
     <div className={style.nav}>
-      <h2 className={style.homeTitle}>Rick and Morty</h2>
       <LoginButton />
+      <div>
+      <h2 className={style.favoritesSection}>Rick and Morty</h2>
       <Search />
+      </div>
+      <div></div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan =require('morgan');
 const cors=require('cors');
-const {mainRouter, logRouter} = require('./Routes/mainRoutes');
+const mainRouter = require('./Routes/mainRoutes');
 
 
 
@@ -20,7 +20,7 @@ server.use((req, res, next) => {
  
 
 server.use(express.json());  
-server.use('/', logRouter);
+
 server.use('/', mainRouter);
 
 

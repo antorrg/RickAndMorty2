@@ -2,25 +2,38 @@ import { Link } from 'react-router-dom';
 import style from './styles/Card.module.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addFav, removeFav } from '../Redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { addFav, getFavorites, removeFav } from '../Redux/actions';
 
 const Card = ({ character }) => {
   const { id, name, origin, image, gender, species } = character;
   const { isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
+  const token = localStorage.getItem('authToken')
+  const favorites = useSelector(state => state.myFavorites);
 
-  const [isFav, setIsFav] = useState(false);
-
-  const handleFavorite = () => {
-    if (isFav) {
-      setIsFav(false);
-      dispatch(removeFav(id)); // Utiliza dispatch para llamar a la acción
-    } else {
-      setIsFav(true);
-      dispatch(addFav({ id, name, origin, image, gender, species })); // Utiliza dispatch para llamar a la acción
+  // Verifica si el personaje actual está en la lista de favoritos
+  const isFavInitially = favorites.some(fav => fav.id === id);
+  
+  const [isFav, setIsFav] = useState(isFavInitially);
+  
+ 
+  const handleFavorite = async () => {
+    try {
+      if (isFav) {
+        setIsFav(false);
+        await dispatch(removeFav(id, token));
+      } else {
+        setIsFav(true);
+        await dispatch(addFav({ id, name, origin, image, gender, species }, token));
+      }
+      // Después de agregar o eliminar el favorito, obtén la lista actualizada
+      await dispatch(getFavorites(token));
+    } catch (error) {
+      console.error('Error al manejar favoritos:', error);
     }
   };
+
 
   return (
     <div key={id} className={style.cardContainer}>

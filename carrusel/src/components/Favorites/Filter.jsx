@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { filterFav} from "../../Redux/actions";
+import style from '../styles/NavBar.module.css'
 
 
 
@@ -12,8 +13,8 @@ const Filter = () => {
     }
   
   return (
-    <div>
-      <select onChange={filterCards}>
+    <div >
+      <select onChange={filterCards} className={style.stylSelect}>
         {optionGender.map((option) => (
           <option value={option} key={option}>
             {option}

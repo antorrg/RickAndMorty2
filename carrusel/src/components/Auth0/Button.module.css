@@ -1,0 +1,13 @@
+.lButton {
+    /* Estilo para tu botón de cierre de sesión si es necesario */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 20px;
+    margin: 10px;
+    cursor: pointer;
+  }
+  .lButton:hover {
+    background-color: #0056b3; /* Cambiamos el color al hacer hover */
+  }

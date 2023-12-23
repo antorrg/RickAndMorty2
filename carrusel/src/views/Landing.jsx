@@ -10,8 +10,6 @@ const Landing = () => {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
 
-  console.log(isAuthenticated);
-  console.log(user);
 
   const userLog = async (userData) => {
     try {

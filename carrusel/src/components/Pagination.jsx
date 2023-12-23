@@ -6,6 +6,8 @@ const Pagination = ({ currentPage, totalPages }) => {
   const dispatch = useDispatch();
  // const { currentPage, totalPages } = useSelector((state) => state);
 
+
+
   const startHandler = () => {
     dispatch(setCurrentPage(1));
   };

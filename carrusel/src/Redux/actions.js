@@ -11,7 +11,9 @@ import {
     ORDER,
     GET_BY_NAME,
     LOG,
-    CLEAN_LOG
+    CLEAN_LOG,
+    GET_FAV,
+    SET_TOTAL_PAGES,
 } from './actions-types';
 
 
@@ -25,7 +27,8 @@ export const getCharacters = () => async (dispatch)=>{
             payload:data,
         })
     } catch (error) {
-        alert('Character not found')
+        handleApiError(error);
+        throw error; 
     }
 }
 export const getById =(id, token)=>async(dispatch)=>{
@@ -43,16 +46,18 @@ export const getById =(id, token)=>async(dispatch)=>{
 }
 export const getByName=(name)=>async(dispatch)=>{
     try {
-        const response = await axios(`/api/character/?${name}`)
+        const response = await axios(`/api/character?name=${name}`)
         const data =response.data;
         return dispatch({
             type:GET_BY_NAME,
             payload:data,
         })
     } catch (error) {
-        
+        handleApiError(error);
+        throw error; 
     }
 }
+
 
 export const setCurrentPage = (page) => {
     return (dispatch) => {
@@ -62,7 +67,11 @@ export const setCurrentPage = (page) => {
       });
     };
   };
-
+  export const setTotalPages = (totalPages) => ({
+    type: SET_TOTAL_PAGES,
+    payload: totalPages,
+  });
+  
   export const cleanState =(payload)=>{
     return{
       type: CLEAN_STATE,
@@ -82,16 +91,46 @@ export const setCurrentPage = (page) => {
     }
    }
 //?@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-export const addFav = (character)=> {
-    return {type: ADD_FAV, 
-        payload: (character)}
-};
+export const addFav = async (character,token)=> {
+    try {
+        const data = (await axios.post(`/log/favorite`, character,setAuthHeader(token) )).data;
+        return dispatch({type: ADD_FAV, 
+             payload: (data)})
 
-export const removeFav = (id)=> {
-    return {type: REMOVE_FAV, 
-            payload:(id)
+    } catch (error) {
+          handleApiError(error);
+        throw error; 
     }
+   
 };
+export const getFavorites = (token) => async (dispatch) => {
+    try {
+      const response = await axios(`/log/favorite`, setAuthHeader(token));
+      const data = response.data;
+      dispatch({
+        type: GET_FAV,
+        payload: data,
+      });
+    } catch (error) {
+      handleApiError(error);
+      throw error;
+    }
+  };
+
+
+export const removeFav = async (id, token) => {
+    try {
+      await axios.delete(`/log/favorite/${id}`, setAuthHeader(token));
+      dispatch({
+        type: REMOVE_FAV,
+        payload: id,
+      });
+    } catch (error) {
+        handleApiError(error);
+        throw error; 
+    }
+  };
+  
 
 export const filterFav = (gender)=>{
     return {

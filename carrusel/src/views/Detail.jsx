@@ -4,10 +4,16 @@ import { getById, cleanState } from "../Redux/actions";
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { accessInfo } from "../utils/Index";
+import { useNavigate } from "react-router-dom";
+import BackButton from "../utils/BackButton";
 
 const Detail = () => {
   const dispatch = useDispatch();
   const detail = useSelector((state) => state.characterById);
+  const navigate = useNavigate();
+  const goBack = () => {
+    navigate(-1);
+  };
 
   const { id } = useParams();
   const token = localStorage.getItem('authToken');
@@ -20,6 +26,8 @@ const Detail = () => {
 
   const handleRefresh = () => {
     dispatch(cleanState());
+    goBack();
+
   };
   //*parseo de info:
   const origin2 = accessInfo(char.origin);
@@ -34,15 +42,19 @@ const Detail = () => {
           </div>
           <div className={style.cardContText}>
             <h2>{char.name}</h2>
+            <div>
+            <button onClick={handleRefresh} className={style.pageDetailbutton }>Volver</button>
+            </div>
             <h3>Id: {char.id}</h3>
             <h3>Status: {char.status}</h3>
             <h3>Species: {char.species}</h3>
             <h3>Gender: {char.gender}</h3>
             <h3>Origin: {origin2}</h3>
             <h3>Location: {location2}</h3>
-            <Link to={"/"} onClick={handleRefresh}>
+           
+            {/* <Link to={"/"} onClick={handleRefresh}>
               <h2>Return to Home</h2>
-            </Link>
+            </Link> */}
           </div>
         </div>
       )}

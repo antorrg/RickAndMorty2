@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { orderFav } from "../../Redux/actions";
 import {useState}from 'react';
+import style from '../styles/NavBar.module.css'
 
 
 const Order = () => {
@@ -13,7 +14,7 @@ const Order = () => {
     }
   return (
     <div>
-      <select onChange={handleOrder}>
+      <select onChange={handleOrder} className={style.stylSelect}>
       <option value="All">ORDENAR POR ALFB.</option>
         <option value="Ascendente">ASCENDENTE</option>
         <option value="Descendente">DESCENDENTE</option>

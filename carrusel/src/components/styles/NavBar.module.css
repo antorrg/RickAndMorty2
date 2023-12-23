@@ -1,4 +1,4 @@
-/* NavBar.module.css */
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -11,20 +11,9 @@
   padding: 0 20px; /* Añadido para dar espacio en los lados */
 }
 
-.logoutButton {
-  /* Estilo para tu botón de cierre de sesión si es necesario */
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 5px 20px;
-  margin: 10px;
-  cursor: pointer;
-}
-
 .userDetails {
   display: flex;
-  align-items:start;
+  align-items:center;
   font-size: medium;
 }
 
@@ -59,7 +48,8 @@
   margin-right: 20px;
 }
 
-.pageNavbutton {
+.pageNavbutton,
+.stylSelect {
   background-color: #007bff;
   color: #fff;
   border: none;
@@ -68,8 +58,50 @@
   margin: 0 10px;
   cursor: pointer;
 }
+.pageNavbutton:hover,
+.stylSelect:hover {
+  background-color: #0056b3; /* Cambiamos el color al hacer hover */
+}
 
-.pageNavbutton:disabled {
+.pageNavbutton:active,
+.stylSelect:active {
+  background-color: #004080; /* Cambiamos el color cuando se presiona el botón */
+}
+
+.pageNavbutton:disabled,
+.stylSelect:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+}
+.stylSelect option {
+  background-color: #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+}
+
+
+
+
+/* Media query para hacer la barra de navegación más receptiva */
+@media (max-width: 768px) {
+  .nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .favoritesSection,
+  .filterOrderButtons {
+    margin-top: 10px; /* Espacio entre secciones en dispositivos más pequeños */
+  }
+
+  .userDetails {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px; /* Espacio entre detalles de usuario y otras secciones */
+  }
+
+  .userDetails h4 {
+    margin-bottom: 5px;
+  }
 }

@@ -9,7 +9,9 @@ import {
     ORDER,
     GET_BY_NAME,
     LOG,
-    CLEAN_LOG
+    CLEAN_LOG,
+    GET_FAV,
+    SET_TOTAL_PAGES,
 
 }from './actions-types';
 
@@ -38,11 +40,19 @@ const initialState = {
                 ...state,
                 characterById:payload,
             }
+  
+  //--------------------------------------------------          
         case SET_CURRENT_PAGE:
             return {
                 ...state,
                 currentPage:payload,
             }
+            case SET_TOTAL_PAGES:
+                return {
+                  ...state,
+                  totalPages: action.payload,
+                };
+//----------------------------------------------------------
             case CLEAN_STATE:
     return{
       ...state,
@@ -50,16 +60,23 @@ const initialState = {
     }
      case ADD_FAV:
         console.log(payload)
-        return {...state, myFavorites: [...state.myFavorites, payload],
-                         allFavorites: [...state.allFavorites, payload]
+        return {...state, myFavorites:  payload,
+                         allFavorites: payload
+        }
+        case GET_FAV:
+        console.log(payload)
+        return {
+            ...state, 
+            myFavorites:  payload,
+           allFavorites: payload,
         }
      case REMOVE_FAV: 
-     console.log(payload)
-              let newFavorites = state.allFavorites.filter(char =>char.id !==(payload));
-              return {...state, myFavorites: newFavorites,
-                                allFavorites: newFavorites}
+         let newFavorites = state.allFavorites.filter(char =>char.id !==(payload));
+               return {...state, myFavorites: newFavorites,
+                                 allFavorites: newFavorites}
+           
      case FILTER:
-            let favoritesFiltered = payload === 'All'? [state.allFavorites] : state.allFavorites.filter(char=> char.gender === payload)
+            let favoritesFiltered = payload === 'All'? state.allFavorites : state.myFavorites.filter(char=> char.gender === payload)
             return{
                 ...state,
                 myFavorites: favoritesFiltered}

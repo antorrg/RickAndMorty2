@@ -8,4 +8,6 @@ export const FILTER = 'FILTER';
 export const ORDER ='ORDER';
 export const GET_BY_NAME='GET_BY_NAME';
 export const LOG='LOG';
-export const CLEAN_LOG='CLEAN_LOG'
+export const CLEAN_LOG='CLEAN_LOG';
+export const GET_FAV='GET_FAV';
+export const SET_TOTAL_PAGES='SET_TOTAL_PAGES,'

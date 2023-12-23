@@ -1,19 +1,39 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCharacters } from "../Redux/actions";
+import { useParams } from "react-router-dom";
+import { getCharacters,getByName, getFavorites } from "../Redux/actions";
 import { UserCards, Pagination, UserNav } from "../components/Index";
 import style from "./styles/Home.module.css";
 
 const UserHome = () => {
   const dispatch = useDispatch();
-  const { character, myFavorites, currentPage, totalPages } = useSelector(
-    (state) => state
-  );
+  const token = localStorage.getItem('authToken')
+  const { character,myFavorites, currentPage, totalPages } = useSelector(
+    (state) => state);
   const [showFavorites, setShowFavorites] = useState(false);
+  const charByName = useSelector((state)=>state.getByName)
+ 
+  const {name}=useParams();
+  useEffect(() => {
+    if (name) {
+      // Si hay un nombre en la URL, busca juegos por nombre
+      dispatch(getByName(name));
+    } else {
+     
+      dispatch(getCharacters());
+    }
+  }, [dispatch, name]);
+
 
   useEffect(() => {
-    dispatch(getCharacters());
-  }, [dispatch]);
+    if (showFavorites) {
+      // Realizar la llamada a la acción getFavorites solo cuando showFavorites es true
+      dispatch(getFavorites(token));
+    } else {
+      // Realizar la llamada a la acción getCharacters solo cuando showFavorites es false
+      dispatch(getCharacters());
+    }
+  }, [dispatch, showFavorites, token]);
 
   const currentData = showFavorites ? myFavorites : character;
 
@@ -24,7 +44,7 @@ const UserHome = () => {
         showFavorites={showFavorites}
       />
       <Pagination currentPage={currentPage} totalPages={totalPages} />
-      <UserCards character={currentData} currentPage={currentPage} />
+      <UserCards character={name ? charByName : currentData} currentPage={currentPage} />
     </div>
   );
 };

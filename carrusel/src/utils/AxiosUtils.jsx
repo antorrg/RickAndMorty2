@@ -1,4 +1,5 @@
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const setAuthHeader = (token) => {
   //const token = localStorage.getItem('authToken');
   const config = {};
@@ -22,20 +23,20 @@ const handleApiError = (error) => {
   
       if (status === 401) {
         // Acceso no autorizado
-        alert('Acceso no autorizado. Debes iniciar sesión.');
+        toast.error('Acceso no autorizado. Debes iniciar sesión.');
       } else if (status === 404) {
         // Recurso no encontrado
-        alert('Detalle del usuario no encontrado.');
+        toast.error('Recurso no encontrado.');
       } else if (status === 403){
-        alert('Prohibido, no tiene permisos para esta accion.');
+        toast.error('Prohibido, no tiene permisos para esta accion.');
       }else {
         // Otro error del servidor
-        alert(`Error del servidor: ${status}`, data);
+        toast.error(`Error del servidor: ${status}`, data);
         //alert('Ocurrió un error en el servidor. Por favor, inténtalo de nuevo más tarde.');
       }
     } else if (error.request) {
       // La solicitud fue realizada pero no se recibió respuesta
-     alert('No se recibió respuesta del servidor.');
+      toast.error('No se recibió respuesta del servidor.');
       //alert('No se recibió respuesta del servidor. Por favor, inténtalo de nuevo más tarde.');
      } //else {
     //   // Error durante la configuración de la solicitud

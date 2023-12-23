@@ -1,10 +1,15 @@
-const {charUsersApi, charUserId} = require('../controllers/userController')
+const {charUsersApi, charByName, charUserId} = require('../controllers/characterController')
 
 const charUsers= async (req,res)=>{
+    const {name}= req.query;
    try {
-       const response = await charUsersApi()
+      if(name){
+        const response = await charByName(name);
+        res.status(200).json(response)
+      }else{
+       const response = await charUsersApi(req, res)
        res.status(200).json(response);
-    
+      }
    } catch (error) {
        res.status(404).json({error:error.message});
     
