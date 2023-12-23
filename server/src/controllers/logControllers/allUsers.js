@@ -5,7 +5,7 @@ const allUsers=async ()=>{
     const users = await User.findAll();
     return users;
  } catch (error) {
-    console.error("¡Algo malo pasó acá (tenia que devolver usuarios!", error);
+    console.error("¡Algo malo pasó acá (tenia que devolver usuarios)!", error);
     throw error;
  }
 }
