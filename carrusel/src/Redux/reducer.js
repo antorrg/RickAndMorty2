@@ -81,15 +81,32 @@ const initialState = {
                 ...state,
                 myFavorites: favoritesFiltered}
 
-    case ORDER:
+    // case ORDER:
     
-         let favoritesOrdered = state.myFavorites.sort((a, b)=>{
-             return payload === "Ascendente" ? a.id - b.id : b.id - a.id
-         })
-         return{
-              ...state,
-             myFavorites: favoritesOrdered
-                    }
+    //      let favoritesOrdered = state.myFavorites.sort((a, b)=>{
+    //          return payload === "Ascendente" ? a.id - b.id : b.id - a.id
+    //      })
+    //      return{
+    //           ...state,
+    //          myFavorites: favoritesOrdered
+    //                 }
+    case ORDER:
+    let favoritesOrdered = state.myFavorites.slice(); // Crear una copia del array para no modificar el estado directamente
+    favoritesOrdered.sort((a, b) => {
+        const nameA = a.name.toUpperCase(); // Convertir a mayúsculas para ordenar de manera insensible a mayúsculas/minúsculas
+        const nameB = b.name.toUpperCase();
+        if(payload === "All"){
+            return favoritesOrdered === state.allFavorites; 
+        }else{
+        return payload === "Ascendente" ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+        }
+    });
+
+    return {
+        ...state,
+        myFavorites: favoritesOrdered,
+    };
+
       case GET_BY_NAME:
         console.log(payload)
         return{
