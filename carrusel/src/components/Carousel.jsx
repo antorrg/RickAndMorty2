@@ -20,6 +20,17 @@ const Carousel = ( {character}) => {
     autoplaySpeed: 1500, // Establece el tiempo de espera entre diapositivas en milisegundos (en este caso, 3 segundos)
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
+    responsive: [
+      {
+        breakpoint: 768, // Ajusta el breakpoint según tus necesidades
+        settings: {
+          slidesToShow: 1, // Cambia el número de tarjetas para dispositivos móviles
+          slidesToScroll: 1,
+          autoplay: true,
+        },
+      },
+    ],
+  
   };
 
   return (

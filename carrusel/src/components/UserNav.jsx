@@ -32,11 +32,11 @@ const UserNav = ({ setShowFavorites, showFavorites }) => {
       {showFavorites && (
         <div className={style.favoritesSection}>
           <h3>Favoritos</h3>
-          <div className={style.filterOrderButtons}>
-            <div >
+          <div>
+            <div className={style.filterButtons} >
               <Filter />
             </div>
-            <div>
+            <div className={style.orderButtons}>
               <Order />
             </div>
           </div>

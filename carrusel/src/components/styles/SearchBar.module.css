@@ -1,17 +1,17 @@
 .searchBar {
     float: center;
     position:relative;
-    margin-top: 15px;
+    margin-top: 1rem;
     margin-left: 0.2px;
-    margin-bottom: 15px;
+    margin-bottom: 1rem;
   }
   .stylSelect {
     background-color: #f5f9fd;
     color: #080404;
     border: none;
     border-radius: 8px;
-    padding: 5px 20px;
-    margin: 0 10px;
+    padding: 0.33rem 1rem;
+    margin: 0.60rem;
     cursor: pointer;
   } 
   
@@ -34,7 +34,7 @@
     border: none;
     border-radius: 8px;
     padding: 5px 20px;
-    margin: 0 10px;
+    margin: 0 0.33rem;
     cursor: pointer;
   }
   .pageNavbutton:hover {

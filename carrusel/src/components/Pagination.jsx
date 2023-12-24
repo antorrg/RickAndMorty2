@@ -47,9 +47,10 @@ const Pagination = ({ currentPage, totalPages }) => {
     if (endPage < totalPages) {
       pageNumbers.push("...");
     }
-
+ 
     return pageNumbers;
   };
+  const isMobile = window.innerWidth <= 768; // Define el umbral para dispositivos móviles
 
   return (
     <div className={styles.paginationContainer}>
@@ -67,18 +68,27 @@ const Pagination = ({ currentPage, totalPages }) => {
         <span>Previous</span>
       </button>
 
-      {generatePageNumbers().map((pageNumber, index) => (
+       {isMobile ? (
         <button
-          key={index}
-          className={`paginationButton ${currentPage === pageNumber ? "active" : ""}`}
-          onClick={() => {
-            if (pageNumber !== "...") {
-              goToHandler(pageNumber);
-            }
-          }}>
-          {pageNumber}
+          key={currentPage}
+          className={`paginationButton ${currentPage === currentPage ? "active" : ""}`}
+          onClick={() => goToHandler(currentPage)}>
+          {currentPage}
         </button>
-      ))}
+      ) : (
+        generatePageNumbers().map((pageNumber, index) => (
+          <button
+            key={index}
+            className={`paginationButton ${currentPage === pageNumber ? "active" : ""}`}
+            onClick={() => {
+              if (pageNumber !== "...") {
+                goToHandler(pageNumber);
+              }
+            }}>
+            {pageNumber}
+          </button>
+        ))
+      )}
 
       <button
         className={styles.paginationButton}

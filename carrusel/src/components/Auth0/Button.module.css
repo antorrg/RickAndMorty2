@@ -3,9 +3,9 @@
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 8px;
-    padding: 5px 20px;
-    margin: 10px;
+    border-radius: 0.5rem;
+    padding: 0.33rem 1.25rem;
+    margin: 0.5rem;
     cursor: pointer;
   }
   .lButton:hover {

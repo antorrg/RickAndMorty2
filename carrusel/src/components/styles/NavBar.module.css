@@ -1,30 +1,30 @@
-
 .nav {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   background-color: rgb(231, 231, 216);
-  width: 100%;
-  height: 6rem;
+  width: 98vw;
+  height: 8rem;
   margin-bottom: 0.25rem;
   border: 1px solid blue;
-  padding: 0 20px; /* Añadido para dar espacio en los lados */
+  padding: 0 1.25rem; /* Añadido para dar espacio en los lados */
+  transition: transform 0.3s ease-in-out;
 }
 
 .userDetails {
   display: flex;
-  align-items:center;
+  align-items: center;
   font-size: medium;
 }
 
 .userDetails h4 {
-  margin-right: 10px;
+  margin-right: 0.20rem;
   font-size: medium;
 }
 
 .userDetails img {
-  width: 40px; /* Ajusta según sea necesario */
-  height: 40px; /* Ajusta según sea necesario */
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -33,75 +33,94 @@
   display: flex;
   align-items: center;
 }
-
 .favoritesSection h3 {
-  margin-right: 10px;
+  margin-right: 0.50rem;
   font-size: x-large;
 }
 
-.filterOrderButtons {
+.orderButtons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.orderButtons {
+  margin-right: 1rem;
+  margin-top:1rem;
+  margin-bottom:10px;
+}
+.filterButtons {
   display: flex;
   align-items: center;
 }
 
-.filterOrderButtons button {
-  margin-right: 20px;
+.filterButtons {
+  margin-right: 2rem;
+  margin-top: 1rem;
+  margin-bottom:10px;
+  justify-content: space-between;
 }
+
 
 .pageNavbutton,
 .stylSelect {
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 5px 20px;
-  margin: 0 10px;
+  border-radius: 0.5rem;
+  padding: 0.33rem 1.25rem;
+  margin-right: 1rem;
   cursor: pointer;
 }
+
 .pageNavbutton:hover,
 .stylSelect:hover {
-  background-color: #0056b3; /* Cambiamos el color al hacer hover */
+  background-color: #0056b3;
 }
 
-.pageNavbutton:active,
-.stylSelect:active {
-  background-color: #004080; /* Cambiamos el color cuando se presiona el botón */
-}
 
-.pageNavbutton:disabled,
-.stylSelect:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
 .stylSelect option {
   background-color: #ccc;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: bold;
   color: #000;
 }
 
-
-
-
-/* Media query para hacer la barra de navegación más receptiva */
-@media (max-width: 768px) {
+/* Media query para pantallas más pequeñas (móviles) */
+@media screen and (max-width: 768px) {
   .nav {
     flex-direction: column;
-    align-items: center;
-  }
-
-  .favoritesSection,
-  .filterOrderButtons {
-    margin-top: 10px; /* Espacio entre secciones en dispositivos más pequeños */
+    height: auto; /* Ajusta la altura automáticamente en dispositivos móviles */
   }
 
   .userDetails {
     flex-direction: column;
     align-items: center;
-    margin-bottom: 10px; /* Espacio entre detalles de usuario y otras secciones */
+    margin-bottom: 0.6rem;
   }
 
   .userDetails h4 {
     margin-bottom: 5px;
+  }
+  .favoritesSection h3 {
+    margin-top: 1rem;
+    font-size: x-large;
+  }
+  
+  .filterButtons {
+    margin-top: 1rem;
+    margin-bottom: 1.6rem;
+  }
+
+  
+  .orderButtons {
+    margin-top: 1rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .pageNavbutton,
+  .stylSelect {
+    width: 40%; /* Ocupa el 100% del ancho en dispositivos móviles */
+    margin-bottom: 0.6rem; /* Agrega espacio entre botones en dispositivos móviles */
   }
 }
