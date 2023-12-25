@@ -23,18 +23,12 @@ const Card = ({ character }) => {
     try {
       if (isFav) {
         setIsFav(false);
-        try {
           await dispatch(removeFav(id, token));
-        } catch (error) {throw new Error('Error al borrar favorito')}
       } else {
         setIsFav(true);
-        try {
           await dispatch(addFav({ id, name, origin, image, gender, species }, token));
-        } catch (error) {throw new Error('Error al guardar favorito');}
       }// Después de agregar o eliminar el favorito, obtén la lista actualizada
-      try {
         await dispatch(getFavorites(token));
-      } catch (error) {throw new Error('Error al obtener favoritos')}
     } catch (error) {
       handleApiError(error);
       throw error;

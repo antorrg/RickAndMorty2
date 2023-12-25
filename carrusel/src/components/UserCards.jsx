@@ -14,7 +14,7 @@ const UserCards = ({ character, currentPage }) => {
 
   return (
     <div className={style.cardList}>
-      {charactersToShow.map((char) => (
+      {charactersToShow && charactersToShow.map((char) => (
         <Card key={char.id} character={char} />
       ))}
     </div>

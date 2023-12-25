@@ -18,7 +18,7 @@ const favDb = async (userId) => {
            throw new Error('Usuario no encontrado.');
         }
 
-        const favorites = user.Favorite; // Aquí asumimos que el alias es "Favorites"
+        const favorites = user.Favorites; // Aquí asumimos que el alias es "Favorites"
 
         return favorites;
     } catch (error) {

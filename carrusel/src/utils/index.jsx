@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { handleApiError } from './AxiosUtils';
 
 
 const enviarInfoAlServer = async (userData) => {
@@ -38,11 +38,13 @@ const enviarInfoAlServer = async (userData) => {
             return response.data;
         
         } else {
-           alert('Error al autenticar/crear usuario');
+            console.log('Error de enviarInfoAlServer')
+           throw new Error('Error al autenticar/crear usuario');
         }
     
     } catch (error) {
-        alert('Error al enviar la solicitud al servidor', error);
+        handleApiError(error)
+        throw error;
     }
     
     
