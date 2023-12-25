@@ -15,12 +15,15 @@ const verifyToken = (req, res, next) => {
   verify(token, SECRET_KEY, (err, decoded) => {
     if (err) {
       if (err.name === 'TokenExpiredError') {
+  
         return res.status(401).json({ error: 'Token expirado.' });
       }
+    
       return res.status(401).json({ error: 'Token inválido.' });
     }
     // Almacena el usuario decodificado en el objeto de solicitud para su uso posterior
     req.user = decoded;
+    console.log(req.user)
      // Extrae el ID del usuario y lo almacena en req.user.id
      const userId = decoded.id;
      //req.user.id = userId;
@@ -35,13 +38,3 @@ const verifyToken = (req, res, next) => {
 };
 
 module.exports = verifyToken;
-
-
-
-
-
-// const verifyToken = async (req, res, next)=>{
-//     const token=req.headers[x-access-token]
-//     console.log(token+ ' yo soy el verify');
-//     next();
-// }

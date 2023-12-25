@@ -8,7 +8,7 @@ import { getFavorites } from "../Redux/actions";
 
 const UserNav = ({ setShowFavorites, showFavorites }) => {
 
- const token =localStorage.getItem('authToken')
+ const token =localStorage.getItem('validToken')
   const { user } = useAuth0();
   console.log(user);
   const handleToggleFavorites = () => {

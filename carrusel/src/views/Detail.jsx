@@ -2,10 +2,10 @@ import style from "./styles/Detail.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getById, cleanState } from "../Redux/actions";
 import { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { accessInfo } from "../utils/Index";
 import { useNavigate } from "react-router-dom";
-import BackButton from "../utils/BackButton";
+
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -16,10 +16,10 @@ const Detail = () => {
   };
 
   const { id } = useParams();
-  const token = localStorage.getItem('authToken');
+  
 
   useEffect(() => {
-    dispatch(getById(id, token));
+    dispatch(getById(id));
   }, [dispatch, id]);
 
   const char = detail;

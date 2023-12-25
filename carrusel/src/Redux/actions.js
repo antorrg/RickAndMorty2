@@ -33,7 +33,7 @@ export const getCharacters = () => async (dispatch)=>{
 }
 export const getById =(id, token)=>async(dispatch)=>{
     try {
-        const response = await axios(`/api/character/${id}`,setAuthHeader(token))
+        const response = await axios(`/api/character/${id}`)
         const data = response.data;
         return dispatch({
             type:SET_BY_ID,
@@ -105,7 +105,7 @@ export const addFav = async (character,token)=> {
 };
 export const getFavorites = (token) => async (dispatch) => {
     try {
-      const response = await axios(`/log/favorite`, setAuthHeader(token));
+      const response = await axios.get(`/log/favorite`, setAuthHeader(token));
       const data = response.data;
       dispatch({
         type: GET_FAV,

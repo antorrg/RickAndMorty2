@@ -28,7 +28,7 @@ const enviarInfoAlServer = async (userData) => {
             const token = response.data.token;
 
             console.log(token)
-            localStorage.setItem('authToken', token);
+            localStorage.setItem('validToken', token);
 
             console.log('Token recibido y almacenado:', token);
       

@@ -9,6 +9,7 @@ import { login, limpiarLogin } from '../Redux/actions';
 const Landing = () => {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
+  console.log(user)
 
 
   const userLog = async (userData) => {

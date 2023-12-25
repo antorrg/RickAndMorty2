@@ -5,10 +5,12 @@ const delFavorite = require('../../controllers/logControllers/delFavorite')
 const favAll =require('../../controllers/logControllers/favAll')
 
 const favUsers = async(req, res)=>{
+    const userId = req.user.userId;
     try {
-        const response = await(favDb(req,res));
+        const response = await(favDb(userId));
         res.status(200).json(response);
     } catch (error) {
+        
         res.status(500).json({ error: error.message });
     }
 }

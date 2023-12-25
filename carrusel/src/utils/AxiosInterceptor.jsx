@@ -6,10 +6,10 @@ const redirectToLogin = (logout) => {
   console.log('Console.log: Token expirado. Redirigiendo al inicio de sesión...');
   setTimeout(() => {
     logout({ logoutParams: { returnTo: window.location.origin } });
-    localStorage.removeItem(token); //Esto en caso de que auth0 u otro servicio no limpie el storage
-    localStorage.clear();
+    localStorage.removeItem(validToken); //Esto en caso de que auth0 u otro servicio no limpie el storage
+    //localStorage.clear();
     window.location.reload(true);
-  }, 3000); // 2000 milisegundos (2 segundos)
+  }, 1500); // 2000 milisegundos (2 segundos)
 };
 
 const interceptor = (logout) => {

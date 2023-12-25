@@ -1,7 +1,7 @@
 const { Favorite, User } = require('../../database');
 
-const favDb = async (req, res) => {
-    const userId = req.user.userId;
+const favDb = async (userId) => {
+    //const userId = req.user.userId;
 
     try {
         const user = await User.findByPk(userId, {
@@ -18,11 +18,12 @@ const favDb = async (req, res) => {
            throw new Error('Usuario no encontrado.');
         }
 
-        const favorites = user.Favorites; // Aquí asumimos que el alias es "Favorites"
+        const favorites = user.Favorite; // Aquí asumimos que el alias es "Favorites"
 
         return favorites;
     } catch (error) {
         console.error(error);
+        console.log('algo paso en el controller')
        throw error;
     }
 };

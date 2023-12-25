@@ -7,9 +7,8 @@ import style from "./styles/Home.module.css";
 
 const UserHome = () => {
   const dispatch = useDispatch();
-  const token = localStorage.getItem('authToken')
-  const { character,myFavorites, currentPage, totalPages } = useSelector(
-    (state) => state);
+  const token = localStorage.getItem('validToken')
+  const { character,myFavorites, currentPage, totalPages } = useSelector((state) => state);
   const [showFavorites, setShowFavorites] = useState(false);
   const charByName = useSelector((state)=>state.getByName)
  
